@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Cryptography
@@ -14,14 +15,11 @@ namespace Cryptography
             text = text.ToUpper();
             StringBuilder builder = new StringBuilder(text);
 
-            foreach (var keyValue in key)
+            for (int i = 0; i < text.Length; i++)
             {
-                for (int i = 0; i < text.Length; i++)
+                if ('A' <= text[i] && text[i] <= 'Z')
                 {
-                    if (text[i] == keyValue.Key)
-                    {
-                        builder[i] = keyValue.Value;
-                    }
+                    builder[i] = key[text[i]];
                 }
             }
 
@@ -33,14 +31,11 @@ namespace Cryptography
             text = text.ToUpper();
             StringBuilder builder = new StringBuilder(text);
 
-            foreach (var keyValue in key)
+            for (int i = 0; i < text.Length; i++)
             {
-                for (int i = 0; i < text.Length; i++)
+                if ('A' <= text[i] && text[i] <= 'Z')
                 {
-                    if (text[i] == keyValue.Value)
-                    {
-                        builder[i] = keyValue.Key;
-                    }
+                    builder[i] = key.FirstOrDefault(w => w.Value==text[i]).Key;
                 }
             }
 
@@ -53,9 +48,9 @@ namespace Cryptography
 
             char[] letters = new char[26];
 
-            for (int i = 0; i < 26; i++)
+            for (char i = 'A'; i <= 'Z'; i++)
             {
-                letters[i] = (char)('A' + i);
+                letters[i - 'A'] = i;
             }
 
             letters.Shuffle();

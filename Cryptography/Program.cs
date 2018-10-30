@@ -23,7 +23,7 @@ namespace Cryptography
 
             var decryptedTextN = caesarCryptN.Decrypt(cryptedTextN);
 
-            ICrypt root13 = new Root13();
+            ICrypt root13 = new Rot13();
 
             var textR = "SI ROOT 13 FUNCTIONEAZA";
 
